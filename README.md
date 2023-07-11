@@ -16,8 +16,7 @@ Si se desea usar otros valores, se debe editar con los valores necesarios, notab
 AWS_REGION que son necesarias para el uso de SOPS con KMS. Nos podemos imaginar que
 usando SOPS con AGE, deberíamos entonces setear el SOPS_AGE_KEY_FILE o
 similares. Alternativamente para apuntar al ARN o al AGE; se puede usar el
-archivo .sops.yaml, también incluido como alternativa. Por favor referirse a la
-documentación de SOPS y elegir su preferida.
+archivo .sops.yaml. Por favor referirse a [la documentación de SOPS](https://github.com/getsops/sops) y elegir su modo preferido. 
 
 Luego, se debe correr `direnv allow`.
 
