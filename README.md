@@ -13,7 +13,7 @@ Por defecto el .envrc-sample usa el rol eks-testing de mikroways para cifrar y
 decifrar los archivos. 
 
 Si se desea usar otros valores, se debe editar con los valores necesarios, notablemente el AWS_PROFILE y
-AWS_REGION, que son necesarias para el uso de SOPS con KMS. La variable SOPS_KMS_ARN debe contener el arn de la clave KMS para la cual el perfil o rol tiene permisos de uso para cigrar y decifrar. Nos podemos imaginar que
+AWS_REGION, que son necesarias para el uso de SOPS con KMS. La variable SOPS_KMS_ARN debe contener el arn de la clave KMS para la cual el perfil o rol tiene permisos de uso para cifrar y decifrar. Nos podemos imaginar que
 usando SOPS con AGE, deberíamos entonces setear el SOPS_AGE_KEY_FILE o
 similares. Alternativamente para apuntar al ARN o al AGE; se puede usar el
 archivo .sops.yaml. Por favor referirse a [la documentación de SOPS](https://github.com/getsops/sops) y elegir su modo preferido. 
