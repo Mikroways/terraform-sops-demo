@@ -28,9 +28,7 @@ El ejemplo es con un secrets.dec.yaml con el contenido siguiente:
 username: admin
 password: password
 ```
-Tranquilamente podríamos usar como alternativa, un archivo de tipo .json, o de
-otro tipo. Usar el formato .yaml o .json nos permite referenciar valores usando sus
-claves.
+Tranquilamente podríamos usar como alternativa, un archivo de tipo .json. Usar el formato .yaml o .json nos permite referenciar valores usando sus claves.
 
 Antes de empezar necesitamos cifrar nuestros archivos que vamos a guardar. El ejemplo incluido
 es secrets.dec.yaml, que se cifra de a siguiente manera en secrets.enc.yaml usando sops:
