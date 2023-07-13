@@ -22,18 +22,20 @@ Luego, se debe correr `direnv allow`.
 
 ## Generar los archivos
 
-El ejemplo es con un secrets.dec.json con el contenido siguiente: 
+El ejemplo es con un secrets.dec.yaml con el contenido siguiente: 
 
-```json
-{
-  username: admin,
-  password: password
-}
+```yaml
+username: admin
+password: password
 ```
+Tranquilamente podríamos usar como alternativa, un archivo de tipo .json, o de
+otro tipo. Usar el formato .yaml o .json nos permite referenciar valores usando sus
+claves.
+
 Antes de empezar necesitamos cifrar nuestros archivos que vamos a guardar. El ejemplo incluido
-es secrets.dec.json, que se cifra de a siguiente manera en secrets.enc.json usando sops:
+es secrets.dec.yaml, que se cifra de a siguiente manera en secrets.enc.yaml usando sops:
 ```
-sops -e secrets.dec.json >  secrets.enc.json
+sops -e secrets.dec.yaml >  secrets.enc.yaml
 ```
 Normalmente NO vamos a versionar los valores sensibles decifrados, se incluye 
 el archivo como modo de ejemplo.
