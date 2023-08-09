@@ -3,26 +3,18 @@
 Ejemplo del uso del modulo de Terraform
 ["sops_file"](https://registry.terraform.io/providers/carlpett/sops/latest/docs/data-sources/file) para decifrar archivos sensibles y generar archivos temporales, como por ejemplo, para desplieges con Helm. 
 
-Se requiere tener instalado y configurado el AWS CLI, tener un rol de IAM con permisos para uso de una clave KMS (alternativamente uso de AGE no difiere mucho del ejemplo dado), y los binarios terraform, sops, y direnv, para seguir el ejemplo. 
+Se requiere tener instalado y configurado el [AWS CLI](), tener un rol de IAM con permisos para uso de una clave KMS (para ver como crear y configurar la clave KMS y rol IAM, puede ver el README en el subdirectorio aws_kms_iam_config), y los binarios [terraform](https://developer.hashicorp.com/terraform/downloads), [SOPS](https://github.com/getsops/sops), y [direnv](https://direnv.net/docs/installation.html), para seguir el ejemplo. Como alternativa a KMS, el uso de AGE no difiere mucho del ejemplo dado, y es gratuito para usar con SOPS.
 
-Para ver como crear y configurar la clave KMS y rol IAM, puede ver el README en
-el
-subdirectorio aws_kms_iam_config. 
-
-Se debe copiar el .envrc-sample al .envrc 
+Se debe copiar el .envrc.local-sample al .envrc.local
 ```
-cp .envrc-sample .envrc 
+cp .envrc.local-sample .envrc.local 
 ```
-Por defecto el .envrc-sample usa el rol eks-testing de mikroways para cifrar y
-decifrar los archivos. 
-
-Si se desea usar otros valores, se debe editar con los valores necesarios, notablemente el AWS_PROFILE y
-AWS_REGION, que son necesarias para el uso de SOPS con KMS. La variable SOPS_KMS_ARN debe contener el arn de la clave KMS para la cual el perfil o rol tiene permisos de uso para cifrar y decifrar. Nos podemos imaginar que
+Se debe editar con los valores necesarios, notablemente el AWS_PROFILE y
+AWS_REGION, que son necesarias para el uso de SOPS con KMS. La variable SOPS_KMS_ARN debe contener el arn de la clave KMS para la cual el perfil o rol tiene permisos de uso para cifrar y decifrar. Si estamos
 usando SOPS con AGE, deberíamos entonces setear el SOPS_AGE_KEY_FILE o
-similares. Alternativamente para apuntar al ARN o al AGE; se puede usar el
-archivo .sops.yaml. Por favor referirse a [la documentación de SOPS](https://github.com/getsops/sops) y elegir su modo preferido. 
+similares. Similarmente para apuntar al ARN o al AGE se puede usar el archivo .sops.yaml. Por favor referirse a [la documentación de SOPS](https://github.com/getsops/sops) y elegir su modo preferido. 
 
-Luego, se debe correr `direnv allow`.
+Luego de hacer esto, se debe correr `direnv allow`.
 
 ## Generar los archivos
 
@@ -34,8 +26,7 @@ password: password
 ```
 Tranquilamente podríamos usar como alternativa, un archivo de tipo .json. Usar el formato .yaml o .json nos permite referenciar valores usando sus claves.
 
-Antes de empezar necesitamos cifrar nuestros archivos que vamos a guardar. El ejemplo incluido
-es secrets.dec.yaml, que se cifra de a siguiente manera en secrets.enc.yaml usando sops:
+Antes de empezar necesitamos cifrar nuestros archivos que vamos a guardar. Se cifra de la siguiente manera, en este ejemplo, en secrets.enc.yaml, usando el comando sops:
 ```
 sops -e secrets.dec.yaml >  secrets.enc.yaml
 ```
