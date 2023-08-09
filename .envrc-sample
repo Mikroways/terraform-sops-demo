@@ -1,5 +1,0 @@
-export SOPS_KMS_ARN="arn:aws:kms:us-east-1:162262765230:key/daac3618-8d5a-44a7-96b6-c1bb3c788012"
-export AWS_PROFILE=eks-testing
-export AWS_REGION=us-east-1
-export TF_VAR_AWS_PROFILE=$AWS_PROFILE
-export TF_VAR_AWS_REGION=$AWS_REGION

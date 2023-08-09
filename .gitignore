@@ -1,2 +1,4 @@
-.envrc
+.envrc.local
+.mw-bin
+.terraform
 output/*
