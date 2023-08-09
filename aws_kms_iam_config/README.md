@@ -63,11 +63,12 @@ Este repositorio contiene archivos de Terraform para configurar una clave KMS en
 
 ### Instrucciones
 
-Copie el archivo terraform.tfvars.example a terraform.tfvars:
+Se debe copiar el .envrc.local-sample al .envrc.local
 ```
-cp terraform.tfvars.example terraform.tfvars
+cp .envrc.local-sample .envrc.local 
 ```
-Edite este archivo para agregar sus datos, estos son el ARN del usuario AWS con permisos para crear los recursos, y la región donde serán creados. Acordate que no se debe versionar este archivo. Por esto es
+Se debe editar con los valores necesarios, notablemente el AWS_PROFILE y
+AWS_REGION, estos son el ARN del usuario AWS con permisos para crear los recursos, y la región donde serán creados. Acordate que no se debe versionar este archivo. Por esto es
 que esta agregado al archivo .gitignore para este subdirectorio.
 
 Inicialización de Terraform:
