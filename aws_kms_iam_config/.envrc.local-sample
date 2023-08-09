@@ -1,0 +1,5 @@
+# Esta linea solamente se utiliza si usas mikroways vm-setup
+# use terraform
+export SOPS_KMS_ARN="arn:aws:kms:XXXXXXXXXXX"
+export AWS_PROFILE=XXXXXX
+export AWS_REGION=XXXXXX

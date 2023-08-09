@@ -1,2 +1,0 @@
-aws_region      = "us-east-1"
-aws_account_arn = "arn:aws:iam::TU-ID:user/TU-USUARIO"

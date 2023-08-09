@@ -1,10 +1,10 @@
-variable "aws_region" {
+variable "AWS_REGION" {
   description = "La region AWS donde los recursos serán creados."
   type        = string
   default     = "us-east-1" 
 }
 
-variable "aws_account_arn" {
+variable "AWS_ARN" {
   description = "ARN de tu cuenta AWS."
   type        = string
 }

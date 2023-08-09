@@ -1,5 +1,5 @@
 provider "aws" {
-  region = var.aws_region 
+  region = var.AWS_REGION
 }
 
 resource "aws_kms_key" "sops_key" {
@@ -17,7 +17,7 @@ resource "aws_iam_role" "sops_role" {
       {
         Action = "sts:AssumeRole",
         Principal = {
-          AWS = var.aws_account_arn
+          AWS = var.AWS_ARN
         },
         Effect = "Allow",
         Sid    = ""
