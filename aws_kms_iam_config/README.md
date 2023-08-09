@@ -58,8 +58,9 @@ Este repositorio contiene archivos de Terraform para configurar una clave KMS en
 
 ### Requisitos previos
 
- - Terraform instalado
- - AWS CLI configurado con las credenciales adecuadas
+ - [Terraform
+   instalado](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+ - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) configurado con las credenciales adecuadas
 
 ### Instrucciones
 
