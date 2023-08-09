@@ -1,9 +1,9 @@
 provider "aws" {
-  region = "us-east-1" 
+  region = var.aws_region 
 }
 
 resource "aws_kms_key" "sops_key" {
-  description             = "KMS key for SOPS"
+  description             = "clave KMS para  SOPS"
   enable_key_rotation     = true
   deletion_window_in_days = 7
 }
@@ -17,7 +17,7 @@ resource "aws_iam_role" "sops_role" {
       {
         Action = "sts:AssumeRole",
         Principal = {
-          Service = "ec2.amazonaws.com"
+          AWS = var.aws_account_arn
         },
         Effect = "Allow",
         Sid    = ""

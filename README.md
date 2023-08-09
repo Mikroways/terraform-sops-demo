@@ -5,6 +5,10 @@ Ejemplo del uso del modulo de Terraform
 
 Se requiere tener instalado y configurado el AWS CLI, tener un rol de IAM con permisos para uso de una clave KMS (alternativamente uso de AGE no difiere mucho del ejemplo dado), y los binarios terraform, sops, y direnv, para seguir el ejemplo. 
 
+Para ver como crear y configurar la clave KMS y rol IAM, puede ver el README en
+el
+subdirectorio aws_kms_iam_config. 
+
 Se debe copiar el .envrc-sample al .envrc 
 ```
 cp .envrc-sample .envrc 
