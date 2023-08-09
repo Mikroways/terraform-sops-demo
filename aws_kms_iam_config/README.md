@@ -1,13 +1,13 @@
 # Configuración de AWS KMS e IAM para SOPS 
 
-Guía para configurar AWS KMS e IAM, permitiendo el uso de SOPS con Terraform. Es
+Esta es una guía para configurar AWS KMS y un rol IAM que permita el uso de SOPS con Terraform. Es
 importante asegurarse que su cuenta de AWS tenga permisos necesarios para
 creación y administración de claves KMS, roles IAM y políticas de permisos.
 
 - [Consola AWS](#desde-la-consola-aws)
 - [Terraform](#con-terraform)
 
-**Nota:** El uso de AWS KMS tiene costos asociados. Consulte la página de precios de AWS para obtener la información más actualizada.
+**Nota:** El uso de AWS KMS tiene costos asociados. No se olvide de consultar [la página de costos](https://calculator.aws) de AWS para obtener la información más actualizada.
 
 ## Desde la consola AWS
 
@@ -28,8 +28,11 @@ Cree la clave.
 #### Crear un nuevo rol
 Navegar al panel de IAM en la Consola de AWS.
 Hacer clic en "Roles" en la barra lateral izquierda, luego "Crear rol".
-Elegir "Servicio AWS" como el tipo de entidad de confianza. Podes elegir uno generico como EC2, ya que este rol se usará principalmente con SOPS y Terraform.
-Adjuntar políticas de permisos, en este paso podemos crear politicas nuevas o usar unas existentes. Para una guía de cuales permisos son necesarios, podes ver el archivo main.tf y las políticas definidas ahí mismo. Siempre es ideal otorgar los mínimos permisos necesarios, en este caso para leer, listar, cifrar y decifrar.
+Elegir "Servicio AWS" como el tipo de entidad de confianza. 
+PMas abajo, se puede elegir un uso generico como EC2, ya que este rol se usará principalmente con SOPS y Terraform.
+Adjuntar políticas de permisos. Para una guía de cuales permisos son necesarios, se puede ver el archivo main.tf y las políticas definidas en el recurso "aws_iam_role_policy". 
+Reuerdo que siempre es ideal otorgar los mínimos permisos necesarios.
+En este caso al menos necesitaremos permisos para cifrar y decifrar con la clave.
 Revise y cree el rol.
 
 #### Modifique las relaciones de confianza (si es necesario)
@@ -41,14 +44,10 @@ Si necesita modificar la relación de confianza (por ejemplo, para permitir que 
 Es crucial realizar la limpieza después de terminar para evitar costos innecesarios.
 
 #### Elimine la clave KMS 
-Navegar al panel de KMS y programar la eliminación de la clave KMS. Tenga en cuenta que AWS conserva la clave durante un período predeterminado (generalmente 7-30 días) antes de su eliminación real.
+Para elimiar la clave, vaya al panel de KMS y seleccione programar la eliminación de la clave KMS. Tenga en cuenta que AWS conserva la clave durante un período predeterminado (generalmente 7-30 días) antes de su eliminación real.
 
 #### Elimine el rol IAM
-Vaya al panel de IAM, haga clic en "Roles", seleccione el rol que creó y
-elimínelo, y podes eliminar las políticas creadas también. Sin embargo, para su
-seguridad, estos recursos no
-tienen costos asociados, los
-costos se asocian mayormente a las claves KMS.
+Aunque estos recursos no tienen costos asociados (los costos se asocian mayormente a las claves KMS), capaz prefiera eliminarlos. Vaya al panel de IAM, haga clic en "Roles", seleccione el rol que creó y elimínelo. Se puede eliminar las políticas creadas también. 
 
 ## Con Terraform
 
