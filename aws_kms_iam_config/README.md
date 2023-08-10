@@ -28,16 +28,25 @@ Cree la clave.
 #### Crear un nuevo rol
 Navegar al panel de IAM en la Consola de AWS.
 Hacer clic en "Roles" en la barra lateral izquierda, luego "Crear rol".
-Elegir "Servicio AWS" como el tipo de entidad de confianza. 
-PMas abajo, se puede elegir un uso generico como EC2, ya que este rol se usará principalmente con SOPS y Terraform.
+Elegir "Cuenta AWS" como el tipo de entidad de confianza. 
+Seleccionar la cuenta que tendrá permisos para usar el rol.
 Adjuntar políticas de permisos. Para una guía de cuales permisos son necesarios, se puede ver el archivo main.tf y las políticas definidas en el recurso "aws_iam_role_policy". 
-Reuerdo que siempre es ideal otorgar los mínimos permisos necesarios.
+En este paso se puede crear una nueva politica de permisos. Para hacer esto,
+buscar 'kms' en la barra de busqueda, y seleccionar los permisos necesarios.
+Agregar un nombre y descripción para la nueva politica, y crearla.
+Siempre es ideal otorgar los mínimos permisos necesarios.
 En este caso al menos necesitaremos permisos para cifrar y decifrar con la clave.
-Revise y cree el rol.
+Luego de crear la politica, revise que este todo bien y cree el rol.
 
 #### Modifique las relaciones de confianza (si es necesario)
 Si necesita modificar la relación de confianza (por ejemplo, para permitir que otra cuenta de usuario de AWS asuma el rol), haga clic en el rol, navegue a la pestaña "Relaciones de confianza" y edite la política.
 
+#### Asegurese que su usuario IAM tiene permisos para asumir el rol
+
+Recuerde que el la relación de confianza del rol debería permitir que la cuenta
+asuma el rol (esto debería estar seteado por defecto, pero puede agregrar otra
+cuenta u otro usuario en este paso). El usuario IAM debería tener permisos para asumir el rol, y el rol debe tener la politica de permsos para
+usar la clave KMS. 
 
 ### Limpieza 
 
