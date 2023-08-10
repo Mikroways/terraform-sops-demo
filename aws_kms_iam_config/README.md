@@ -18,25 +18,36 @@ Instrucciones paso a paso para configurar AWS KMS e IAM directamente desde la co
 #### Crear clave KMS
 En la barra de búsqueda de servicios de AWS, escriba "KMS" y seleccione "Key Management Service".
 Haga clic en "Crear clave".
-Elija "Simétrica" y haga clic en "Siguiente".
-Proporcione un alias y una descripción para la clave.
-Configure los permisos administrativos y de uso de la clave.
-Cree la clave.
+![](./assets/kms-search.png)
+![](./assets/select-create-key.png)
+Elija "Simétrica", "Cifrar y decifrar" y haga clic en "Siguiente".
+![](./assets/select-key-characteristics.png)
+Proporcione un alias y una descripción para la clave. Cree la clave.
+![](./assets/key-alias.png)
+
 
 ### Configuración del Rol IAM para SOPS
 
 #### Crear un nuevo rol
 Navegar al panel de IAM en la Consola de AWS.
 Hacer clic en "Roles" en la barra lateral izquierda, luego "Crear rol".
-Elegir "Cuenta AWS" como el tipo de entidad de confianza. 
-Seleccionar la cuenta que tendrá permisos para usar el rol.
-Adjuntar políticas de permisos. Para una guía de cuales permisos son necesarios, se puede ver el archivo main.tf y las políticas definidas en el recurso "aws_iam_role_policy". 
+![](./assets/create-role.png)
+
+Elegir "Cuenta AWS" como el tipo de entidad de confianza. Seleccionar la cuenta que tendrá permisos para usar el rol.
+
+![](./assets/role-type.png)
+
+Adjuntar políticas de permisos. 
 En este paso se puede crear una nueva politica de permisos. Para hacer esto,
-buscar 'kms' en la barra de busqueda, y seleccionar los permisos necesarios.
+buscar 'kms' en la barra de busqueda, y seleccionar los permisos necesarios. Para una guía de cuales permisos son necesarios, se puede ver el archivo main.tf y las políticas definidas en el recurso "aws_iam_role_policy". Siempre es ideal otorgar los mínimos permisos necesarios. En este caso al menos necesitaremos permisos para cifrar y decifrar con la clave.
+![](./assets/create-policy.png)
+![](./assets/policy-permissions.png)
+
 Agregar un nombre y descripción para la nueva politica, y crearla.
-Siempre es ideal otorgar los mínimos permisos necesarios.
-En este caso al menos necesitaremos permisos para cifrar y decifrar con la clave.
+![](./assets/review-policy.png)
+
 Luego de crear la politica, revise que este todo bien y cree el rol.
+![](./assets/review-role.png)
 
 #### Modifique las relaciones de confianza (si es necesario)
 Si necesita modificar la relación de confianza (por ejemplo, para permitir que otra cuenta de usuario de AWS asuma el rol), haga clic en el rol, navegue a la pestaña "Relaciones de confianza" y edite la política.
@@ -55,8 +66,11 @@ Es crucial realizar la limpieza después de terminar para evitar costos innecesa
 #### Elimine la clave KMS 
 Para elimiar la clave, vaya al panel de KMS y seleccione programar la eliminación de la clave KMS. Tenga en cuenta que AWS conserva la clave durante un período predeterminado (generalmente 7-30 días) antes de su eliminación real.
 
+![](./assets/key-actions.png)
+![](./assets/key-deletion.png)
+
 #### Elimine el rol IAM
-Aunque estos recursos no tienen costos asociados (los costos se asocian mayormente a las claves KMS), capaz prefiera eliminarlos. Vaya al panel de IAM, haga clic en "Roles", seleccione el rol que creó y elimínelo. Se puede eliminar las políticas creadas también. 
+Aunque estos recursos no tienen costos asociados (los costos se asocian mayormente a las claves KMS), capaz prefiera eliminarlos. Vaya al panel de IAM, haga clic en "Roles", seleccione el rol que creó y elimínelo. Si desea, también puede eliminar las políticas creadas. 
 
 ## Con Terraform
 
