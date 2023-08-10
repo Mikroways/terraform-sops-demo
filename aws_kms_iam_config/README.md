@@ -19,7 +19,6 @@ Instrucciones paso a paso para configurar AWS KMS e IAM directamente desde la co
 En la barra de búsqueda de servicios de AWS, escriba "KMS" y seleccione "Key Management Service".
 Haga clic en "Crear clave".
 ![](./assets/kms-search.png)
-![](./assets/select-create-key.png)
 Elija "Simétrica", "Cifrar y decifrar" y haga clic en "Siguiente".
 ![](./assets/select-key-characteristics.png)
 Proporcione un alias y una descripción para la clave. Cree la clave.
