@@ -8,6 +8,11 @@ resource "aws_kms_key" "sops_key" {
   deletion_window_in_days = 7
 }
 
+resource "aws_kms_alias" "sops_key_alias" {
+  name          = "alias/sops-key"
+  target_key_id = aws_kms_key.sops_key.key_id
+}
+
 resource "aws_iam_role" "sops_role" {
   name = "SOPSRole"
 
